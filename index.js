@@ -4,13 +4,13 @@ let movieArr
 
 function getData(value) {
     movieArr = []
-    fetch(`http://www.omdbapi.com/?apikey=24705dce&s=${value}`)
+    fetch(`https://www.omdbapi.com/?apikey=24705dce&s=${value}`)
         .then(res => res.json())
         .then(data => {
             movieArr = data.Search.filter(movie => movie.Type === "movie")  // put each movie in array (if type ==="movie")
             // add extra details for each movie 
             movieArr.map(movie => {
-                fetch(`http://www.omdbapi.com/?apikey=24705dce&i=${movie.imdbID}`)
+                fetch(`https://www.omdbapi.com/?apikey=24705dce&i=${movie.imdbID}`)
                     .then(res => res.json())
                     .then(data2 => {
                         movie.Rating = data2.imdbRating;
