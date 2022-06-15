@@ -22,6 +22,7 @@ h3 {
     text-align: center;
     font-size:1.5rem;
     color: #DFDDDD;
+    margin:1em 0;
 }
 a {
     color: #fff;
@@ -37,14 +38,13 @@ p{
 form {
     position:absolute;
     top: 31vh;
-    margin:0 auto;
 }
 input {
     box-sizing: border-box;
     margin:0;
-    /* height: 7vh; */
+    margin-left: 1em;
     min-height:3em;
-    padding: 0 1em;
+    padding: 0 0.5em;
     float:left;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
@@ -59,15 +59,14 @@ button {
     box-sizing: border-box;
     background-color: #F9FAFB;
     margin:0;
-    /* height: 7vh; */
+    margin-right: 1em;
     min-height:3em;
-    padding: 0 2em;
+    padding: 0 1em;
     float:left;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border:#D1D5DB solid 1px;
     font-size:1rem;
-    letter-spacing: 1px;
 }    
 button:hover {
     background-color: #ffffff;
@@ -114,7 +113,7 @@ main {
     margin-top: 4em;    
 }
 
-/* ---------- LAYOUR MOVIE COMPONENTS ------------ */
+/* ---------- LAYOUT MOVIE COMPONENTS ------------ */
 
 #default-message {
     min-height:50vh;
@@ -156,18 +155,18 @@ main {
     justify-content: space-between;
     align-items: center;
     color:#111827;
+    margin-bottom: 1em;
 }
 .movie-data-row.plot {
     color:#6B7280;
 }
 .movie-data-row p, .movie-data-row h2 {
     margin-right: 1.5em;
-    margin-bottom: 1em;
 }
 .movie-data-row i {
     margin-right: 0.3em;
-    margin-bottom: 1em;
 }
+
 
 /* ---------- MEDIA QUERIES ------------ */
 
@@ -187,6 +186,9 @@ main {
 @media (min-width:800px) {
     p {
         font-size: 1rem;
+    }
+    input {
+        padding: 0 1em;
     }
 
 @media (min-width:1200px) {
