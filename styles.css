@@ -190,6 +190,7 @@ main {
     input {
         padding: 0 1em;
     }
+}
 
 @media (min-width:1200px) {
     p {
