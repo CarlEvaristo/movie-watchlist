@@ -15,19 +15,21 @@
                 <h1>Find your film</h1>
                 <a href="watchlist.html">My Watchlist</a>
             </div>
-            <form>
+            <form id="search-form">
                 <input 
                     type="text" 
                     class='fontAwesome' 
                     placeholder="&#xf002;  Search for a movie"
-                    id="search" 
+                    name="search" 
                     aria-label="search movie name input" >
-                <button type="submit">Search</button>
+                <button type="submit" name="submit-button">Search</button>
             </form>
         </header>
         <main>
-            <i class="fa-solid fa-film"></i>
-            <h3>Start exploring</h3>
+            <div id="default-message" class="container">
+                <i class="fa-solid fa-film"></i>
+                <h3>Start exploring</h3>
+            </div>
         </main>
         <script src="index.js"></script>
     </body>
