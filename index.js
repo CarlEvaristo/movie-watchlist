@@ -1,9 +1,11 @@
 const searchForm = document.getElementById("search-form")
 const mainContainer = document.getElementById("default-message")
+const searchInput = document.getElementById("search")
 let movieArr
 
 function getData(value) {
     movieArr = []
+
     fetch(`https://www.omdbapi.com/?apikey=24705dce&s=${value}`)
         .then(res => res.json())
         .then(data => {
@@ -13,13 +15,14 @@ function getData(value) {
                 fetch(`https://www.omdbapi.com/?apikey=24705dce&i=${movie.imdbID}`)
                     .then(res => res.json())
                     .then(data2 => {
+                        (data2.Poster === "N/A") && (movie.Poster = "/images/no-image-available.jpg")
                         movie.Rating = data2.imdbRating;
                         movie.Runtime = data2.Runtime;
                         movie.Genre = data2.Genre;
                         movie.Plot = data2.Plot 
 
                         mainContainer.innerHTML = ""
-                        movieArr.filter( movie => {
+                        movieArr.map( movie => {
                             mainContainer.innerHTML += 
                             `
                             <div class="movie-wrapper">
@@ -36,15 +39,25 @@ function getData(value) {
                     .catch(error => console.log(error))
                 })
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            searchInput.value = ""
+            searchInput.placeholder = "\uf002 No Data" 
+            mainContainer.innerHTML = 
+            `   <div id="default-message" class="container">
+                    <h3>Unable to find what you’re looking for.<br> Please try another search.</h3>
+                </div>
+            `
+        })
 
 }
 
 searchForm.addEventListener("submit", function(event) {
     event.preventDefault()
     const formData = new FormData(event.target)
-    let searchInput = formData.get("search")
-    getData(searchInput)
+    let search = formData.get("search")
+    searchInput.value = ""
+    searchInput.placeholder = "\uf002  Search for another movie"
+    getData(search)
 })
 
 
