@@ -33,8 +33,10 @@ function getData(value) {
                             `
                             })
                         })
+                    .catch(error => console.log(error))
                 })
         })
+        .catch(error => console.log(error))
 
 }
 
