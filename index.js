@@ -15,7 +15,7 @@ function getData(value) {
                 fetch(`https://www.omdbapi.com/?apikey=24705dce&i=${movie.imdbID}`)
                     .then(res => res.json())
                     .then(data2 => {
-                        (data2.Poster === "N/A") && (movie.Poster = "/images/no-image-available.jpg")
+                        (data2.Poster === "N/A") && (movie.Poster = "images/no-image-available.jpg")
                         movie.Rating = data2.imdbRating;
                         movie.Runtime = data2.Runtime;
                         movie.Genre = data2.Genre;
