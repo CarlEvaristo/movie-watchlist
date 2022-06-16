@@ -1,9 +1,9 @@
 const mainContainer = document.getElementById("default-message")
 
 function removeMovie(id) {
-    let movies = JSON.parse(localStorage.getItem("movies"));
+    let movies = JSON.parse(localStorage.getItem("data"));
     movies = movies.filter(item => item.imdbID !== id)
-    localStorage.setItem("movies", JSON.stringify(movies));
+    localStorage.setItem("data", JSON.stringify(movies));
     renderWatchlist(movies)
 
     if (movies.length === 0) {
@@ -39,7 +39,7 @@ function renderError() {
 
 
 try {
-    let array = JSON.parse(localStorage.getItem("movies"))
+    let array = JSON.parse(localStorage.getItem("data"))
     renderWatchlist(array)
 } catch {
     console.log("no movies yet")

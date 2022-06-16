@@ -7,11 +7,11 @@ let searchArray = []
 function saveMovie(id) {
     let movie = searchArray.filter(movie => (movie.imdbID === id))[0]
     try {
-       let movies = JSON.parse(localStorage.getItem("movies"));
+       let movies = JSON.parse(localStorage.getItem("data"));
        if (!movies.includes(movie)) {
             movies = [...movies, movie]
             console.log("hallo", movies)
-            localStorage.setItem("movies", JSON.stringify(movies));
+            localStorage.setItem("data", JSON.stringify(movies));
             console.log("Movie is saved")
         } else {
             console.log("Movie already saved")
@@ -19,7 +19,7 @@ function saveMovie(id) {
     } catch {
         console.log("No movies yet, create new list in storage")
         let movies = [movie]
-        localStorage.setItem("movies", JSON.stringify(movies));
+        localStorage.setItem("data", JSON.stringify(movies));
     }
 }
 
