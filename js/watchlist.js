@@ -7,6 +7,7 @@ function removeMovie(id) {
     renderWatchlist(movies)
 
     if (movies.length === 0) {
+        localStorage.removeItem("data")
         renderError()
     } 
 }
