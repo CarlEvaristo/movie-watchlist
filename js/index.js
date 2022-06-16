@@ -2,11 +2,15 @@ const searchForm = document.getElementById("search-form")
 const mainContainer = document.getElementById("default-message")
 const searchInput = document.getElementById("search")
 
+let searchArray = []
+
 function saveMovie(id) {
+    let movie = searchArray.filter(movie => (movie.imdbID === id))[0]
     try {
-        let movies = JSON.parse(localStorage.getItem("movies"));
-        if (!movies.includes(id)) {
-            movies = [...movies, id]
+       let movies = JSON.parse(localStorage.getItem("movies"));
+       if (!movies.includes(movie)) {
+            movies = [...movies, movie]
+            console.log("hallo", movies)
             localStorage.setItem("movies", JSON.stringify(movies));
             console.log("Movie is saved")
         } else {
@@ -14,7 +18,7 @@ function saveMovie(id) {
         }
     } catch {
         console.log("No movies yet, create new list in storage")
-        let movies = [id]
+        let movies = [movie]
         localStorage.setItem("movies", JSON.stringify(movies));
     }
 }
@@ -33,7 +37,7 @@ function renderHtml(movie) {
         </div>
     `
     mainContainer.appendChild(newDiv)
-    document.getElementById(movie.imdbID).addEventListener("click", (event) => saveMovie(event.target.id))
+    document.getElementById(movie.imdbID).addEventListener("click", event => saveMovie(event.target.id))
 }
 
 function renderError() {
@@ -54,21 +58,16 @@ async function searchMovies(query) {
 
 async function getMovies(array) {
     mainContainer.innerHTML = ""
-    try {
-        for (let movie of array) {
-            let response2 = await fetch(`https://www.omdbapi.com/?apikey=d5f56738&i=${movie.imdbID}`)
-            let data2 = await response2.json()
-            movie.Rating = data2.imdbRating
-            movie.Runtime = data2.Runtime
-            movie.Genre = data2.Genre
-            movie.Plot = data2.Plot;
-            (movie.Poster === "N/A") && (movie.Poster = "images/no-image-available.jpg")
-            renderHtml(movie)
-        }
-        
-    } catch(error) {
-        console.log(error)
-        renderError()
+    for (let movie of array) {
+        let response2 = await fetch(`https://www.omdbapi.com/?apikey=d5f56738&i=${movie.imdbID}`)
+        let data2 = await response2.json()
+        movie.Rating = data2.imdbRating
+        movie.Runtime = data2.Runtime
+        movie.Genre = data2.Genre
+        movie.Plot = data2.Plot;
+        (movie.Poster === "N/A") && (movie.Poster = "images/no-image-available.jpg")
+        searchArray.push(movie)
+        renderHtml(movie) 
     }
 }
 
