@@ -20,8 +20,8 @@ function saveMovie(id) {
 }
 
 function renderHtml(movie) {
-    // searchInput.value = ""
-    // searchInput.placeholder = "\uf002  Search for another movie"
+    searchInput.value = ""
+    searchInput.placeholder = "\uf002  Search for another movie"
     const newDiv = document.createElement("div")
     newDiv.className = "movie-wrapper"
     newDiv.innerHTML =     `
@@ -37,8 +37,8 @@ function renderHtml(movie) {
 }
 
 function renderError() {
-    // searchInput.value = ""
-    // searchInput.placeholder = "\uf002 No Data" 
+    searchInput.value = ""
+    searchInput.placeholder = "\uf002 No Data" 
     mainContainer.innerHTML = 
     `   <div id="default-message" class="container">
             <h3>Unable to find what you're looking for.<br> Please try another search.</h3>
