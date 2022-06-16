@@ -30,7 +30,7 @@ function renderError() {
 }
 
 async function searchMovies(query) {
-    const response = await fetch(`http://www.omdbapi.com/?apikey=d5f56738&s=${query}`)
+    const response = await fetch(`https://www.omdbapi.com/?apikey=d5f56738&s=${query}`)
     let movieArr = await response.json()
     console.log(movieArr)
     return movieArr.Search
@@ -43,7 +43,7 @@ async function getMovies(query) {
 
     try {
         for (let movie of array) {
-            let response2 = await fetch(`http://www.omdbapi.com/?apikey=d5f56738&i=${movie.imdbID}`)
+            let response2 = await fetch(`https://www.omdbapi.com/?apikey=d5f56738&i=${movie.imdbID}`)
             let data2 = await response2.json()
             movie.Rating = data2.imdbRating
             movie.Runtime = data2.Runtime
